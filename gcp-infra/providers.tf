@@ -1,5 +1,6 @@
 provider "google" {
-  region = "us-west2"
+  region      = var.gcp_region
+  credentials = file(var.gcp_auth_file)
 }
 
 

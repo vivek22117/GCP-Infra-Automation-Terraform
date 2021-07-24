@@ -7,7 +7,7 @@ locals {
 
   region               = "us-west2"
   org_id               = "778483994463"
-  folder_id = "288998510805"
+  folder_id            = "288998510805"
   billing_account      = "014805-292501-C34DCC"
   host_project_name    = "host-project"
   service_project_name = "k8s-project"
@@ -24,7 +24,7 @@ locals {
     owner       = var.owner
     team        = var.team
     environment = var.environment
-    component = var.component
+    component   = var.component
   }
 
 }
