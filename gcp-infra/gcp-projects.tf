@@ -3,10 +3,10 @@ resource "google_project" "host-staging" {
   project_id          = local.host_project_id
   billing_account     = local.billing_account
   org_id              = local.org_id
-  folder_id = local.folder_id
+  folder_id           = local.folder_id
   auto_create_network = false
 
-  labels = merge(local.common_tags, map("Name", "${var.environment}-${local.host_project_name}"))
+  labels = local.common_labels
 }
 
 resource "google_project" "k8s-staging" {
@@ -14,10 +14,10 @@ resource "google_project" "k8s-staging" {
   project_id          = local.service_project_id
   billing_account     = local.billing_account
   org_id              = local.org_id
-  folder_id = local.folder_id
+  folder_id           = local.folder_id
   auto_create_network = false
 
-  labels = merge(local.common_tags, map("Name", "${var.environment}-${local.service_project_name}"))
+  labels = local.common_labels
 }
 
 resource "google_project_service" "host" {
