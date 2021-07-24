@@ -2,11 +2,6 @@ provider "google" {
   region = "us-west2"
 }
 
-resource "random_integer" "suffix" {
-  max = 100
-  min = 1000000
-}
-
 
 terraform {
 
