@@ -20,4 +20,10 @@ terraform {
       version = "~> 3.1"
     }
   }
+
+  backend "gcs" {
+    bucket = "doubledigit-tfstate-us-west2-dev"
+    prefix = "state/dev/backend/terraform.tfstate"
+    credentials = "C:\\Users\\vivek\\GCP\\auth\\dd-solutions-71ecc944d35c.json"
+  }
 }
