@@ -21,7 +21,10 @@ locals {
   }
 
   common_labels = {
-
+    owner       = var.owner
+    team        = var.team
+    environment = var.environment
+    component = var.component
   }
 
 }

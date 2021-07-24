@@ -16,4 +16,7 @@ terraform {
       version = "~> 3.1"
     }
   }
+
+  backend "gcs" {
+  }
 }
