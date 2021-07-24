@@ -1,7 +1,7 @@
 provider "google" {
-  project = var.gcp_project
   credentials = file(var.gcp_auth_file)
-  region = var.gcp_region"us-west2"
+  project = var.gcp_project
+  region = var.gcp_region
 }
 
 
@@ -19,11 +19,5 @@ terraform {
       source  = "hashicorp/random"
       version = "~> 3.1"
     }
-  }
-
-  backend "gcs" {
-    bucket = ""
-    prefix = ""
-    credentials = ""
   }
 }
