@@ -5,10 +5,10 @@ resource "random_integer" "suffix" {
 
 locals {
 
-  region               = "us-west2"
-  org_id               = "778483994463"
-  folder_id            = "288998510805"
-  billing_account      = "014805-292501-C34DCC"
+  region               = var.gcp_region
+  org_id               = var.org_id
+  folder_id            = var.folder_id
+  billing_account      = var.billing_account
   host_project_name    = "host-project"
   service_project_name = "k8s-project"
   host_project_id      = "${local.host_project_name}-${random_integer.suffix.result}"
