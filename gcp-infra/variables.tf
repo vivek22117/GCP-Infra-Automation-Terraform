@@ -20,13 +20,3 @@ variable "component" {
   type = string
   description = "Project component for which resources are created"
 }
-
-#####=============Local variables===============#####
-locals {
-  common_tags = {
-    owner       = var.owner
-    team        = var.team
-    environment = var.environment
-    component = var.component
-  }
-}
