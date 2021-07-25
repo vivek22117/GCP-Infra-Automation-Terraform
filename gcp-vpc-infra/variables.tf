@@ -3,12 +3,6 @@ variable "gcp_auth_file" {
   description = "GCP authentication file"
 }
 
-
-variable "gcp_project" {
-  type        = string
-  description = "GCP project name"
-}
-
 variable "org_id" {
   type        = string
   description = "GCP organisation ID"
@@ -22,6 +16,11 @@ variable "folder_id" {
 variable "billing_account" {
   type        = string
   description = "GCP billing account"
+}
+
+variable "srv_project_id" {
+  type        = string
+  description = "GCP Project ID for srv account"
 }
 
 
@@ -44,13 +43,13 @@ variable "environment" {
 }
 
 variable "component" {
-  type = string
+  type        = string
   description = "Project component for which resources are created"
 }
 
 #####==============================VPC Configuration Variables==============================#####
 variable "public_subnet_with_cidr" {
-  type = map(string)
+  type        = map(string)
   description = "CIDR range with region for private subnetwork"
   default = {
     us-east1 = "10.1.0.0/20"
@@ -59,7 +58,7 @@ variable "public_subnet_with_cidr" {
 }
 
 variable "private_subnet_with_cidr" {
-  type = map(string)
+  type        = map(string)
   description = "CIDR range with regions for private subnetwork"
   default = {
     us-east1 = "10.0.0.0/20"
@@ -68,7 +67,7 @@ variable "private_subnet_with_cidr" {
 }
 
 variable "srv_account_name" {
-  type = string
+  type        = string
   description = "The Google service account ID"
 }
 

@@ -11,8 +11,8 @@ resource "google_compute_shared_vpc_service_project" "application-service" {
 }
 
 resource "google_compute_network" "vpc" {
-  name          =  format("%s","${var.component}-${var.environment}-vpc")
-  project                 = google_compute_shared_vpc_host_project.network-host.project
+  name    = format("%s", "${var.component}-${var.environment}-vpc")
+  project = google_compute_shared_vpc_host_project.network-host.project
 
   auto_create_subnetworks = "false"
   routing_mode            = "GLOBAL"
@@ -20,7 +20,7 @@ resource "google_compute_network" "vpc" {
 
 
 resource "google_compute_firewall" "allow-internal" {
-  name    = "${var.component}-fw-allow-internal"
+  name = "${var.component}-fw-allow-internal"
 
   network = google_compute_network.vpc.name
 
@@ -36,7 +36,7 @@ resource "google_compute_firewall" "allow-internal" {
     ports    = ["0-65535"]
   }
 
-  source_ranges = [flatten(values(var.public_subnet_with_cidr), values(var.private_subnet_with_cidr))]
+  source_ranges = flatten([values(var.public_subnet_with_cidr), values(var.private_subnet_with_cidr)])
 }
 
 resource "google_compute_firewall" "allow-http" {
@@ -64,7 +64,7 @@ resource "google_compute_firewall" "allow-bastion" {
 
 resource "google_compute_firewall" "allow-db" {
   name    = "${var.component}-fw-allow-to-db"
-  network =  google_compute_network.vpc.name
+  network = google_compute_network.vpc.name
 
 
   allow {
