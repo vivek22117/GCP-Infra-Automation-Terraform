@@ -48,7 +48,7 @@ variable "component" {
 }
 
 #####==============================VPC Configuration Variables==============================#####
-variable "public_subnet_with_cider" {
+variable "public_subnet_with_cidr" {
   type = map(string)
   description = "CIDR range with region for private subnetwork"
   default = {
@@ -64,5 +64,10 @@ variable "private_subnet_with_cidr" {
     us-east1 = "10.0.0.0/20"
     us-west1 = "10.2.0.0/20"
   }
+}
+
+variable "srv_account_name" {
+  type = string
+  description = "The Google service account ID"
 }
 
