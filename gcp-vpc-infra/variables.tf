@@ -1,7 +1,8 @@
-variable "gcp_region" {
+variable "gcp_auth_file" {
   type        = string
-  description = "GCP region"
+  description = "GCP authentication file"
 }
+
 
 variable "gcp_project" {
   type        = string
