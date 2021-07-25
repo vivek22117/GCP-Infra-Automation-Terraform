@@ -1,8 +1,8 @@
 gcp-backend/terraform.tfvars
 
 gcp-backend/terraform.tfstate
-gcp-infra/terraform.tfstate
+gcp-gke-infra/terraform.tfstate
 gcp-backend/terraform.tfstate.backup
-gcp-infra/terraform.tfstate.backup
+gcp-gke-infra/terraform.tfstate.backup
 
-gcp-infra/terraform.tfvars
+gcp-gke-infra/terraform.tfvars
