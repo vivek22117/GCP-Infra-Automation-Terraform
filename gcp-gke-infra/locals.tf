@@ -7,7 +7,6 @@ locals {
 
   region               = var.gcp_region
   org_id               = var.org_id
-  folder_id            = var.folder_id
   billing_account      = var.billing_account
   host_project_name    = "host-project"
   service_project_name = "k8s-project"
