@@ -4,8 +4,6 @@ resource "random_integer" "suffix" {
 }
 
 locals {
-
-  region               = var.gcp_region
   org_id               = var.org_id
   folder_id            = var.folder_id
   billing_account      = var.billing_account
