@@ -14,6 +14,8 @@ locals {
   host_project_id      = "${local.host_project_name}-${random_integer.suffix.result}"
   service_project_id   = "${local.service_project_name}-${random_integer.suffix.result}"
 
+  secondary_ip_ranges = {}
+
   common_labels = {
     owner       = var.owner
     team        = var.team
