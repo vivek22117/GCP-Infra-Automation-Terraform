@@ -1,20 +1,21 @@
 resource "google_compute_instance" "default" {
-  count = length(var.public_subnet_with_cidr)
+  depends_on = [google_compute_subnetwork.public_subnet]
+  for_each   = var.public_subnet_with_cidr
 
-  name         = format("%s","${var.component}-${var.environment}-${google_compute_subnetwork.public_subnet[count.index].region}-${count.index}")
-  machine_type  = "n1-standard-1"
-  zone          =   format("%s","${google_compute_subnetwork.public_subnet[count.index].region}-b")
-  tags          =   ["ssh","http"]
+  name         = format("%s", "${var.component}-${var.environment}-${each.key}-instance-1")
+  machine_type = "n1-standard-1"
+  zone         = format("%s", "${each.key}-b")
+  tags         = ["ssh", "http"]
 
   boot_disk {
     auto_delete = true
     initialize_params {
-      image     =  data.google_compute_image.centos_image.self_link
+      image = data.google_compute_image.centos_image.self_link
     }
   }
 
   labels = {
-    webserver =  "true"
+    webserver = "true"
   }
 
   metadata = {
@@ -29,7 +30,7 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    subnetwork = google_compute_subnetwork.public_subnet[count.index].name
+    subnetwork = google_compute_subnetwork.public_subnet[each.key].name
     access_config {
       // Ephemeral IP
     }

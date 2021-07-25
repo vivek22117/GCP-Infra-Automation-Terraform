@@ -1,7 +1,3 @@
-data "google_service_account" "admin_srv_account" {
-  account_id = var.srv_account_name
-}
-
 data "google_compute_image" "centos_image" {
   family  = "centos-8"
   project = "centos-cloud"
@@ -32,5 +28,3 @@ data "google_compute_image" "ubuntu_pro_image" {
   family  = "ubuntu-pro-2004-lts"
   project = "ubuntu-os-pro-cloud"
 }
-
-
