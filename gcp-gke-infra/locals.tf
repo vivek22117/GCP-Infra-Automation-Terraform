@@ -1,6 +1,6 @@
 resource "random_integer" "suffix" {
-  max = 100
-  min = 1000000
+  max = 1000000
+  min = 100
 }
 
 locals {
