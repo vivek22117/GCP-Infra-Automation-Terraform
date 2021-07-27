@@ -1,9 +1,9 @@
 locals {
-  gcs_labels     = {
+  gcs_labels = {
     "environment" = var.environment
     "team"        = var.team
-    "component" = var.component
-    "owner" = var.owner
+    "component"   = var.component
+    "owner"       = var.owner
   }
 }
 
