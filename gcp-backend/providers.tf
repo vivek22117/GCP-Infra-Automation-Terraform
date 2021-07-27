@@ -1,7 +1,7 @@
 provider "google" {
   credentials = file(var.gcp_auth_file)
-  project = var.gcp_project
-  region = var.gcp_region
+  project     = var.gcp_project
+  region      = var.gcp_region
 }
 
 
@@ -22,8 +22,8 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "doubledigit-tfstate-us-west2-dev"
-    prefix = "state/dev/backend/terraform.tfstate"
+    bucket      = "doubledigit-tfstate-us-west2-dev"
+    prefix      = "state/dev/backend/terraform.tfstate"
     credentials = "C:\\Users\\vivek\\GCP\\auth\\dd-solutions-71ecc944d35c.json"
   }
 }
