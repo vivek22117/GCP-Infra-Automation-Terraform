@@ -76,6 +76,6 @@ variable "environment" {
 }
 
 variable "component" {
-  type = string
+  type        = string
   description = "Project component for which resources are created"
 }
