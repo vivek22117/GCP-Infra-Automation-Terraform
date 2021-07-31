@@ -5,8 +5,8 @@ resource "google_compute_shared_vpc_host_project" "network-host" {
 resource "google_compute_shared_vpc_service_project" "application-service" {
   depends_on = [google_compute_shared_vpc_host_project.network-host]
 
-  host_project    = local.host_project_id
-  service_project = local.service_project_id
+  host_project    = google_compute_shared_vpc_host_project.network-host.project
+  service_project = google_project.application-host.project_id
 
 }
 
