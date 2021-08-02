@@ -8,7 +8,7 @@ resource "google_service_account" "application-host-srv" {
 resource "google_compute_subnetwork" "private_subnet" {
   for_each = var.private_subnet_with_cidr
 
-  name                     = format("%s", "${var.component}-${var.environment}-${each.key}-pub-net")
+  name                     = format("%s", "${var.component}-${var.environment}-${each.key}-pvt-net")
   project                  = google_compute_shared_vpc_host_project.network-host.project
   network                  = google_compute_network.vpc.self_link
   ip_cidr_range            = each.value
