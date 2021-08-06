@@ -1,11 +1,13 @@
 resource "google_compute_instance" "default" {
   depends_on = [google_compute_subnetwork.public_subnet]
+
   for_each   = var.public_subnet_with_cidr
 
   name         = format("%s", "${var.component}-${var.environment}-${each.key}-instance-1")
   machine_type = "n1-standard-1"
   zone         = format("%s", "${each.key}-b")
   tags         = ["ssh", "http"]
+  project = google_project.application-host.project_id
 
   boot_disk {
     auto_delete = true
