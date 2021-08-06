@@ -1,5 +1,7 @@
 resource "google_compute_shared_vpc_host_project" "network-host" {
-  project = google_project.application-host.number
+  depends_on = [google_compute_network.vpc]
+
+  project = google_project.network-host.number
 }
 
 resource "google_compute_shared_vpc_service_project" "application-service" {
@@ -12,7 +14,8 @@ resource "google_compute_shared_vpc_service_project" "application-service" {
 
 resource "google_compute_network" "vpc" {
   name    = format("%s", "${var.component}-${var.environment}-vpc")
-  project = google_compute_shared_vpc_host_project.network-host.project
+  project = google_project.network-host.project_id
+  description = "Host network"
 
   auto_create_subnetworks = "false"
   routing_mode            = "GLOBAL"
@@ -23,6 +26,7 @@ resource "google_compute_firewall" "allow-internal" {
   name = "${var.component}-fw-allow-internal"
 
   network = google_compute_network.vpc.name
+  project = google_project.network-host.project_id
 
   allow {
     protocol = "icmp"
@@ -42,6 +46,7 @@ resource "google_compute_firewall" "allow-internal" {
 resource "google_compute_firewall" "allow-http" {
   name    = "${var.component}-fw-allow-http"
   network = google_compute_network.vpc.name
+  project = google_project.network-host.project_id
 
   allow {
     protocol = "tcp"
@@ -54,6 +59,7 @@ resource "google_compute_firewall" "allow-http" {
 resource "google_compute_firewall" "allow-bastion" {
   name    = "${var.component}-fw-allow-bastion"
   network = google_compute_network.vpc.name
+  project = google_project.network-host.project_id
 
   allow {
     protocol = "tcp"
@@ -65,6 +71,7 @@ resource "google_compute_firewall" "allow-bastion" {
 resource "google_compute_firewall" "allow-db" {
   name    = "${var.component}-fw-allow-to-db"
   network = google_compute_network.vpc.name
+  project = google_project.network-host.project_id
 
 
   allow {
