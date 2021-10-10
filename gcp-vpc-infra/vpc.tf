@@ -1,7 +1,7 @@
 resource "google_compute_shared_vpc_host_project" "network-host" {
   depends_on = [google_compute_network.vpc]
 
-  project = google_project.network-host.number
+  project = google_project.network-host.id
 }
 
 resource "google_compute_shared_vpc_service_project" "application-service" {
@@ -13,6 +13,8 @@ resource "google_compute_shared_vpc_service_project" "application-service" {
 }
 
 resource "google_compute_network" "vpc" {
+  depends_on = [google_project.network-host]
+
   name    = format("%s", "${var.component}-${var.environment}-vpc")
   project = google_project.network-host.project_id
   description = "Host network"
